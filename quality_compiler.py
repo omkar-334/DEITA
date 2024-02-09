@@ -3,7 +3,6 @@ import re
 import numpy as np
 import pandas as pd
 
-
 filename = "dolly-15k-quality.csv"
 df = pd.read_csv(filename, dtype=str)
 
@@ -32,12 +31,12 @@ df['finalscores']=df['scoring_response'].map(cleanerx)
 
 tempdf = df[df['finalscores'].notnull()][['instruction', 'response','helpfulness_response','relevance_response','depth_response','creativity_response', 'details_response','finalscores']]
 
-tempdf['response'] = "#Question: \n" + tempdf['instruction'] + "\n\nResponse:" + tempdf['response']
-tempdf['helpfulness_response'] = "#Question: \n" + tempdf['instruction'] + "\n\nResponse:" + tempdf['helpfulness_response']
-tempdf['relevance_response'] = "#Question: \n" + tempdf['instruction'] + "\n\nResponse:" + tempdf['relevance_response']
-tempdf['depth_response'] = "#Question: \n" + tempdf['instruction'] + "\n\nResponse:" + tempdf['depth_response']
-tempdf['creativity_response'] = "#Question: \n" + tempdf['instruction'] + "\n\nResponse:" + tempdf['creativity_response']
-tempdf['details_response'] = "#Question: \n" + tempdf['instruction'] + "\n\nResponse:" + tempdf['details_response']
+tempdf['response'] = "#Question: \n" + tempdf['instruction'] + "\n\n#Response:" + tempdf['response']
+tempdf['helpfulness_response'] = "#Question: \n" + tempdf['instruction'] + "\n\n#Response:" + tempdf['helpfulness_response']
+tempdf['relevance_response'] = "#Question: \n" + tempdf['instruction'] + "\n\n#Response:" + tempdf['relevance_response']
+tempdf['depth_response'] = "#Question: \n" + tempdf['instruction'] + "\n\n#Response:" + tempdf['depth_response']
+tempdf['creativity_response'] = "#Question: \n" + tempdf['instruction'] + "\n\n#Response:" + tempdf['creativity_response']
+tempdf['details_response'] = "#Question: \n" + tempdf['instruction'] + "\n\n#Response:" + tempdf['details_response']
 
 scores1=tempdf['finalscores'].map(lambda x:x[0])
 scores2=tempdf['finalscores'].map(lambda x:x[1])
@@ -47,7 +46,7 @@ scores5=tempdf['finalscores'].map(lambda x:x[4])
 scores6=tempdf['finalscores'].map(lambda x:x[5])
 tempdf.reset_index(inplace=True,drop=True)
 
-prompts=tempdf['instruction'].tolist() + tempdf['helpfulness_response'].tolist() + tempdf['relevance_response'].tolist() + tempdf['depth_response'].tolist() + tempdf['creativity_response'].tolist() + tempdf['details_response'].tolist()
+prompts=tempdf['response'].tolist() + tempdf['helpfulness_response'].tolist() + tempdf['relevance_response'].tolist() + tempdf['depth_response'].tolist() + tempdf['creativity_response'].tolist() + tempdf['details_response'].tolist()
 scores=scores1.tolist() + scores2.tolist() + scores3.tolist() + scores4.tolist() + scores5.tolist() + scores6.tolist()
 
 outdf=pd.DataFrame({'prompt':prompts,"score":scores})
