@@ -1,19 +1,19 @@
 import random
-from dotenv import load_dotenv 
 from typing import Optional
 
-from datasets import load_dataset
-from fastapi import FastAPI, Depends
 import pandas as pd
+from datasets import load_dataset
+from dotenv import load_dotenv
+from fastapi import Depends, FastAPI
 from pydantic import BaseModel
 
-from models import Gemini, ChatGPT
+from models import ChatGPT, Gemini
 from prompts import createComplexityPrompts, createQualityPrompts
 from scorer import complexity_scorer, quality_scorer
 
-
 load_dotenv()
-model_map = {'chatgpt' : ChatGPT, 'gemini' : Gemini}
+model_map = {"chatgpt": ChatGPT, "gemini": Gemini}
+
 
 class Params(BaseModel):
     model: str
@@ -22,12 +22,14 @@ class Params(BaseModel):
     key: Optional[str] = None
     input: Optional[str] = None
     rows: Optional[int] = -1
-    split : Optional[str] = 'train'
+    split: Optional[str] = "train"
+
 
 app = FastAPI()
 
+
 @app.get("/")
-def evol(params = Depends(Params)):
+def evol(params=Depends(Params)):
     model_name = params.model
     key = params.key
     dataset_name = params.dataset
@@ -38,24 +40,25 @@ def evol(params = Depends(Params)):
 
     model = model_map[model_name](key)
     df = pd.DataFrame(load_dataset(dataset_name, split=split))
-    
+
     if input:
-        df['temp'] = df[instruction].str.strip() + '\r\n'+ df[input].str.strip()
+        df["temp"] = df[instruction].str.strip() + "\r\n" + df[input].str.strip()
     else:
-        df['temp'] = df[instruction].str.strip()
-    
+        df["temp"] = df[instruction].str.strip()
+
     evol_dataset = []
 
-    for instruction in df['temp'][:rows]:
+    for instruction in df["temp"][:rows]:
         evol_prompts = create_prompts(instruction)
         selected_evol_prompt = random.choice(evol_prompts)
 
         evol_instruction = model.call_api(selected_evol_prompt)
         answer = model.call_api(evol_instruction)
 
-        evol_dataset.append({"instruction":evol_instruction,"output":answer})
+        evol_dataset.append({"instruction": evol_instruction, "output": answer})
     return evol_dataset
 
-@app.get('/dummy')
+
+@app.get("/dummy")
 def evol(params=Depends(Params)):
     return params
