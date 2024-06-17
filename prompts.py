@@ -7,6 +7,7 @@ You Should enhance the quality of the response using the following method:
 Please make the Response more helpful to the user.
 You should try your best not to make the #Rewritten Response# become verbose,
 #Rewritten Response# can only add 10 to 20 words into #Given Response#.
+Do not include any instructions or explanations.
 '#Given Response#', '#Rewritten Response#', 'given response' and 'rewritten response' are not allowed to appear in #Rewritten Response#.
 
 #Given Prompt#:
@@ -28,6 +29,7 @@ You should enhance the quality of the response using the following method:
 Please make the Response more relevant to #Given Prompt#.
 You should try your best not to make the #Rewritten Response# become verbose,
 #Rewritten Response# can only add 10 to 20 words into #Given Response#.
+Do not include any instructions or explanations.
 '#Given Response#', '#Rewritten Response#', 'given response' and 'rewritten response' are not allowed to appear in #Rewritten Response#
 
 #Given Prompt#:
@@ -113,6 +115,7 @@ You SHOULD complicate the given prompt using the following method:
 If #Given Prompt# can be solved with just a few simple thinking processes, you can rewrite it to explicitly request multiple-step reasoning.
 You should try your best not to make the #Rewritten Prompt# become verbose, #Rewritten Prompt# can only add 10 to 20 words into #Given Prompt#.
 '#Given Prompt#', '#Rewritten Prompt#', 'given prompt' and 'rewritten prompt' are not allowed to appear in #Rewritten Prompt#.
+Do not include any instructions or explanations.
 {}
 #Given Prompt#:
 {}
@@ -129,6 +132,7 @@ You SHOULD complicate the given prompt using the following method:
 Please add one more constraints/requirements into #Given Prompt#.`
 You should try your best not to make the #Rewritten Prompt# become verbose, #Rewritten Prompt# can only add 10 to 20 words into #Given Prompt#.
 '#Given Prompt#', '#Rewritten Prompt#', 'given prompt' and 'rewritten prompt' are not allowed to appear in #Rewritten Prompt#.
+Do not include any instructions or explanations.
 {}
 #Given Prompt#:
 {}
@@ -144,6 +148,7 @@ You SHOULD complicate the given prompt using the following method:
 If #Given Prompt# contains inquiries about certain issues, the depth and breadth of the inquiry can be increased.
 You should try your best not to make the #Rewritten Prompt# become verbose, #Rewritten Prompt# can only add 10 to 20 words into #Given Prompt#.
 '#Given Prompt#', '#Rewritten Prompt#', 'given prompt' and 'rewritten prompt' are not allowed to appear in #Rewritten Prompt#.
+Do not include any instructions or explanations.
 {}
 #Given Prompt#:
 {}
@@ -159,6 +164,7 @@ You SHOULD complicate the given prompt using the following methods:
 Please replace general concepts with more specific concepts.
 You should try your best not to make the #Rewritten Prompt# become verbose, #Rewritten Prompt# can only add 10 to 20 words into #Given Prompt#.
 '#Given Prompt#', '#Rewritten Prompt#', 'given prompt' and 'rewritten prompt' are not allowed to appear in #Rewritten Prompt#.
+Do not include any instructions or explanations.
 {}
 #Given Prompt#:
 {}
